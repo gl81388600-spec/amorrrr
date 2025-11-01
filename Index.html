@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Amor Estelar, Haydee</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos generales y animaciones de fondo */
+        body {
+            background: linear-gradient(125deg, #000011, #020024, #130f40, #000011);
+            background-size: 400% 400%;
+            animation: gradientBG 20s ease infinite;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            color: white; /* Asegura que todo el texto sea blanco por defecto */
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #universe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #c998fd, 0 0 20px #c998fd;
+            animation: twinkle linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); }
+            75% { opacity: 0.8; }
+        }
+
+        .shooting-star {
+            position: absolute;
+            top: -10%;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+            filter: drop-shadow(0 0 6px #fff);
+            animation: shoot 10s linear infinite;
+            animation-delay: calc(var(--delay) * 1s);
+        }
+
+        @keyframes shoot {
+            0% { transform: translate(0, 0) rotate(-45deg); opacity: 1; }
+            100% { transform: translate(150vw, 150vh) rotate(-45deg); opacity: 0; }
+        }
+        
+        /* Animación para el contenido principal flotante */
+        @keyframes floatEffect {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .content-card {
+            animation: fadeInContent 1.5s ease-out 0.5s forwards, floatEffect 5s ease-in-out infinite;
+            opacity: 0;
+            position: relative;
+            z-index: 10;
+        }
+        
+        @keyframes fadeInContent {
+            0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        .font-display {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Estilos y animaciones del corazón estelar mejorado */
+        #star-heart-container {
+            position: relative;
+            width: 200px; /* Tamaño más grande para el corazón */
+            height: 200px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #star-heart {
+            fill: url(#heartGradient);
+            stroke: #ff7ac1;
+            stroke-width: 3; /* Borde más pronunciado */
+            filter: drop-shadow(0 0 15px rgba(255, 122, 193, 0.9)) drop-shadow(0 0 25px rgba(255, 122, 193, 0.5)); /* Más brillo */
+            animation: pulseGlow 2.5s ease-in-out infinite; /* Pulso más lento y suave */
+            position: relative;
+            z-index: 2; /* Asegura que esté sobre las líneas y partículas */
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { filter: drop-shadow(0 0 15px rgba(255, 122, 193, 0.9)) drop-shadow(0 0 25px rgba(255, 122, 193, 0.5)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 25px rgba(255, 122, 193, 1)) drop-shadow(0 0 40px rgba(255, 122, 193, 0.7)); transform: scale(1.03); }
+        }
+
+        /* Animación de las líneas de constelación */
+        .constellation-line {
+            stroke: url(#lineGradient);
+            stroke-width: 2; /* Líneas más gruesas */
+            fill: none;
+            stroke-dasharray: 200; /* Longitud de la línea para animar */
+            stroke-dashoffset: 200;
+            animation: drawConstellation 6s linear infinite forwards; /* Animación más larga */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+            z-index: 1; /* Detrás del corazón */
+        }
+
+        @keyframes drawConstellation {
+            0% { stroke-dashoffset: 200; opacity: 0.3; }
+            50% { stroke-dashoffset: 0; opacity: 1; }
+            100% { stroke-dashoffset: -200; opacity: 0.3; }
+        }
+        
+        /* Retrasos para las líneas */
+        .line-1 { animation-delay: 0s; animation-duration: 6s; }
+        .line-2 { animation-delay: 2s; animation-duration: 7s; }
+        .line-3 { animation-delay: 4s; animation-duration: 5s; }
+        .line-4 { animation-delay: 1s; animation-duration: 6.5s; }
+
+
+        /* Partículas de brillo alrededor del corazón */
+        .heart-particle {
+            position: absolute;
+            background-color: #ffeedd;
+            border-radius: 50%;
+            box-shadow: 0 0 5px #ffeedd;
+            opacity: 0;
+            animation: particleFloat 4s ease-out infinite;
+            z-index: 1; /* Detrás del corazón, delante de las líneas */
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translate(0, 0); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { transform: translate(var(--x), var(--y)); opacity: 0; }
+        }
+
+        /* Estilo para el nombre en el corazón */
+        #haydee-name {
+            position: absolute;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem; /* Tamaño más grande para el nombre */
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            animation: nameFloat 6s ease-in-out infinite; /* Animación flotante para el nombre */
+            z-index: 3; /* Asegura que el nombre esté sobre el corazón */
+        }
+        @keyframes nameFloat {
+            0% { transform: translate(-50%, -50%) translateY(0px); opacity: 1;}
+            25% { transform: translate(-50%, -50%) translateY(-5px); }
+            50% { transform: translate(-50%, -50%) translateY(0px); }
+            75% { transform: translate(-50%, -50%) translateY(5px); }
+            100% { transform: translate(-50%, -50%) translateY(0px); opacity: 1;}
+        }
+
+    </style>
+</head>
+<body class="text-white">
+
+    <!-- Contenedor del Universo (Estrellas) --><div id="universe">
+        <!-- Estrellas fugaces --><div class="shooting-star" style="--delay:0;"></div>
+        <div class="shooting-star" style="--delay:3;"></div>
+        <div class="shooting-star" style="--delay:6;"></div>
+        <div class="shooting-star" style="--delay:9;"></div>
+    </div>
+
+    <!-- Contenedor principal para centrar el contenido --><main class="relative min-h-screen w-full flex items-center justify-center p-4 z-10">
+
+        <!-- Tarjeta de contenido --><div class="content-card text-center max-w-2xl bg-black bg-opacity-40 backdrop-blur-lg p-8 md:p-12 rounded-3xl shadow-2xl shadow-purple-500/30 border border-purple-400/20">
+            
+            <!-- Contenedor del Corazón de Estrellas y Líneas de Constelación --><div id="star-heart-container">
+                <!-- SVG para el corazón con degradado y líneas animadas --><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Definiciones de degradados --><defs>
+                        <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ff007f;stop-opacity:1" /> <!-- Rosa brillante --><stop offset="50%" style="stop-color:#da70d6;stop-opacity:1" /> <!-- Orquídea --><stop offset="100%" style="stop-color:#8a2be2;stop-opacity:1" /> <!-- Azul violeta --></linearGradient>
+                        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#e0bfff;stop-opacity:0.9" /> <!-- Lavanda claro --><stop offset="100%" style="stop-color:#ffe4e1;stop-opacity:0.7" /> <!-- Rosa claro --></linearGradient>
+                    </defs>
+
+                    <!-- El corazón --><path id="star-heart" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+
+                    <!-- Líneas de constelación alrededor del corazón --><path class="constellation-line line-1" d="M12 4 L9 7 L6 4 L9 1 L12 4"/>
+                    <path class="constellation-line line-2" d="M12 4 L15 7 L18 4 L15 1 L12 4"/>
+                    <path class="constellation-line line-3" d="M4 10 L7 13 L4 16 L1 13 L4 10"/>
+                    <path class="constellation-line line-4" d="M20 10 L17 13 L20 16 L23 13 L20 10"/>
+                </svg>
+                <!-- Nombre de Haydee Hurtado dentro/sobre el corazón --><span id="haydee-name" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">Haydee Hurtado</span>
+            </div>
+
+            <!-- Título principal (el cumplido) --><h1 class="font-display text-4xl md:text-6xl text-white mb-6">
+                Tu belleza es de otro universo, mi <span class="text-pink-400">Haydee</span>.
+            </h1>
+            
+            <!-- Párrafo de detalle --><p class="font-sans text-lg md:text-xl text-gray-200 mb-4">
+                En cada constelación veo el brillo de tu sonrisa y en la inmensidad del espacio, solo puedo pensar en ti.
+            </p>
+            
+            <!-- Mensaje sobre la distancia --><p class="font-sans text-md md:text-lg text-gray-400">
+                Puede que estemos a distancia, pero en mi multiverso, tú eres el centro de todo, <span class="text-purple-300">Haydee</span>. Cada estrella fugaz es un deseo de tenerte cerca.
+            </p>
+            
+            <p class="font-sans text-lg md:text-xl text-gray-200 mt-8 font-bold">
+                Te amo infinitamente.
+            </p>
+
+        </div>
+    </main>
+
+    <script>
+        // Función para generar las estrellas titilantes
+        function createStars() {
+            const universe = document.getElementById('universe');
+            const starCount = 150; 
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                star.style.animationDelay = `${Math.random() * 7}s`;
+                star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                
+                universe.appendChild(star);
+            }
+        }
+
+        // Función para generar partículas alrededor del corazón
+        function createHeartParticles() {
+            const heartContainer = document.getElementById('star-heart-container');
+            const particleCount = 20;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'heart-particle';
+
+                const size = Math.random() * 3 + 1; // Tamaño de partícula entre 1px y 4px
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                // Posición inicial alrededor del centro del corazón
+                const angle = Math.random() * 2 * Math.PI;
+                const radius = Math.random() * 30 + 30; // Radio entre 30px y 60px del centro
+                const startX = 50 + radius * Math.cos(angle);
+                const startY = 50 + radius * Math.sin(angle);
+                particle.style.top = `${startY}%`;
+                particle.style.left = `${startX}%`;
+
+                // Destino aleatorio para la animación de flotación
+                const endX = (Math.random() * 100) - 50; // entre -50 y 50
+                const endY = (Math.random() * 100) - 50; // entre -50 y 50
+                particle.style.setProperty('--x', `${endX}px`);
+                particle.style.setProperty('--y', `${endY}px`);
+
+                particle.style.animationDelay = `${Math.random() * 4}s`; // Retraso aleatorio
+                particle.style.animationDuration = `${Math.random() * 3 + 3}s`; // Duración aleatoria
+
+                heartContainer.appendChild(particle);
+            }
+        }
+
+        window.onload = () => {
+            createStars();
+            createHeartParticles();
+        };
+    </script>
+
+</body>
+</html>
+
